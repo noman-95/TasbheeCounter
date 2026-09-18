@@ -1,44 +1,35 @@
-name: Build Android APK
+name: tasbheecounter
+description: "A new Flutter project."
+publish_to: 'none'
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+version: 1.0.0+1
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+environment:
+  sdk: ">=3.13.0 <4.0.0"
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+dependencies:
+  flutter:
+    sdk: flutter
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.5
+  vibration: ^3.2.1
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
-      - name: Get dependencies
-        run: flutter pub get
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
-      - name: Generate app icons
-        run: dart run flutter_launcher_icons
+flutter:
+  uses-material-design: true
 
-      - name: Build APK
-        run: flutter build apk --release
+  assets:
+    - assets/icon/app_icon.png.png
 
-      - name: Rename APK
-        run: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/TasbheeCounter.apk
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: TasbheeCounter
-          path: build/app/outputs/flutter-apk/TasbheeCounter.apk
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png.png"
+  min_sdk_android: 21
