@@ -1,3 +1,4 @@
+import 'quran_practice_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 
