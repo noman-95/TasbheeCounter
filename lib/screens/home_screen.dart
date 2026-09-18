@@ -304,6 +304,16 @@ class _HomeScreenState extends State<HomeScreen> {
     await _loadData();
   }
 
+  void _openQuranPractice() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            const QuranPracticeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -475,7 +485,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
               const SizedBox(height: 22),
+
               Container(
                 width: double.infinity,
                 padding:
@@ -510,7 +522,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         letterSpacing: 1,
                       ),
                     ),
+
                     const SizedBox(height: 16),
+
                     Stack(
                       alignment: Alignment.center,
                       children: [
@@ -558,7 +572,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 20),
+
                     GestureDetector(
                       onTap: _incrementCount,
                       child: Container(
@@ -606,7 +622,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
               const SizedBox(height: 20),
+
               DropdownButtonFormField<ZikrModel>(
                 value: selectedZikr,
                 decoration: InputDecoration(
@@ -642,7 +660,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
               ),
+
               const SizedBox(height: 13),
+
               DropdownButtonFormField<String>(
                 value: targetOptions.contains(
                   selectedTarget,
@@ -688,7 +708,47 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
               ),
+
               const SizedBox(height: 14),
+
+              // ==============================
+              // QURAN PRACTICE BUTTON
+              // ==============================
+
+              SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: FilledButton.icon(
+                  onPressed: _openQuranPractice,
+                  icon: const Icon(
+                    Icons.menu_book_rounded,
+                  ),
+                  label: const Text(
+                    'Quran Practice',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight:
+                          FontWeight.w600,
+                    ),
+                  ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor:
+                        primaryGreen,
+                    shape:
+                        RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(14),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 14),
+
+              // ==============================
+              // RESET BUTTON
+              // ==============================
+
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -721,7 +781,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+
               const SizedBox(height: 18),
+
               Container(
                 width: double.infinity,
                 padding:
@@ -745,6 +807,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'Current',
                       value: '$count',
                     ),
+
                     Container(
                       height: 45,
                       width: 1,
@@ -753,11 +816,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         0.3,
                       ),
                     ),
+
                     _statItem(
                       icon: Icons.today_rounded,
                       title: 'Today',
                       value: '$todayCount',
                     ),
+
                     Container(
                       height: 45,
                       width: 1,
@@ -766,6 +831,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         0.3,
                       ),
                     ),
+
                     _statItem(
                       icon:
                           Icons.all_inclusive_rounded,
