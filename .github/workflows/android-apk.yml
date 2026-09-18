@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -28,11 +28,17 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Generate app icons
+        run: dart run flutter_launcher_icons
+
       - name: Build APK
         run: flutter build apk --release
+
+      - name: Rename APK
+        run: mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/TasbheeCounter.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: tasbhee-counter-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: TasbheeCounter
+          path: build/app/outputs/flutter-apk/TasbheeCounter.apk
